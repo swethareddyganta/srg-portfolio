@@ -1,0 +1,262 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 270 76% 53%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 270 76% 53%;
+    --radius: 0.5rem;
+    /* Global neon intensity controls (can be overridden in scopes) */
+    --neon-a: 0.2;
+    --neon-b: 0.1;
+  }
+
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 270 76% 53%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 12 6.5% 15.1%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 270 76% 53%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-sans tracking-tight;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-medium;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl font-medium;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
+}
+
+/* Site-wide neon glow for headings */
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-shadow:
+      0 0 0.04rem rgba(255, 255, 255, 0.06),
+      0 0 1rem rgba(168, 85, 247, var(--neon-a)),
+      0 0 2rem rgba(59, 130, 246, var(--neon-b));
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      animation: neonPulse 3.2s ease-in-out infinite;
+    }
+  }
+}
+
+@layer components {
+  /* Neon glow scope for homepage - headers only, softer but blurrier */
+  .neon-scope {
+    --neon-a: 0.16; /* primary glow alpha (reduced) */
+    --neon-b: 0.08; /* secondary glow alpha (reduced) */
+  }
+  /* Apply neon to all non-paragraph text */
+  .neon-scope :where(h1,h2,h3,h4,h5,h6,li,dt,dd,th,td,caption,figcaption,small,strong,em,code,kbd,mark,label,a,button,.button-primary,.button-secondary,.badge,.tag,.pill,.headline,.gradient-text) {
+    text-shadow:
+      0 0 0.04rem rgba(255,255,255,0.06),
+      0 0 1rem rgba(168,85,247,var(--neon-a)),
+      0 0 2rem rgba(59,130,246,var(--neon-b));
+  }
+  /* Ensure paragraphs and their descendants have no neon */
+  .neon-scope p, .neon-scope p * { text-shadow: none !important; }
+  .neon-scope .no-neon, .neon-scope .no-neon * {
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  /* No box-glow on containers by default */
+
+  @keyframes neonPulse {
+    0%, 100% { --neon-a: 0.14; --neon-b: 0.06; }
+    50% { --neon-a: 0.26; --neon-b: 0.14; }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .neon-scope :where(h1,h2,h3,h4,h5,h6,li,dt,dd,th,td,caption,figcaption,small,strong,em,code,kbd,mark,label,a,button,.button-primary,.button-secondary,.badge,.tag,.pill,.headline,.gradient-text) { animation: neonPulse 3.2s ease-in-out infinite; }
+    .neon-scope p, .neon-scope p * { animation: none !important; }
+  }
+  /* Scroll reveal base styles */
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+    transition: opacity 600ms ease, transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .section {
+    @apply py-20 md:py-28 w-full;
+  }
+
+  .container-xl {
+    @apply max-w-6xl mx-auto px-4 md:px-8;
+  }
+
+  .headline {
+    @apply text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-6;
+  }
+
+  .subheadline {
+    @apply text-lg md:text-xl text-gray-400 max-w-3xl;
+  }
+
+  .button-primary {
+    @apply bg-white text-black hover:bg-gray-200 transition-colors px-5 py-2.5 rounded-md font-medium text-sm;
+  }
+
+  .button-secondary {
+    @apply bg-transparent border border-gray-800 hover:border-gray-700 text-white transition-colors px-5 py-2.5 rounded-md font-medium text-sm;
+  }
+
+  .card {
+    @apply bg-card border border-gray-800 rounded-xl overflow-hidden transition-transform duration-300 ease-out;
+  }
+
+  .grid-pattern {
+    background-size: 40px 40px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-violet-400 to-blue-400 font-serif italic;
+  }
+
+  .gradient-bg {
+    @apply bg-gradient-to-r from-purple-600/20 via-violet-600/20 to-blue-600/20;
+  }
+
+  /* Hide scrollbars but keep scroll functionality */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* Subtle floating animation for callouts */
+  @keyframes floaty {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-4px); }
+    100% { transform: translateY(0px); }
+  }
+  .animate-floaty {
+    animation: floaty 3s ease-in-out infinite;
+  }
+
+  /* Marquee animation */
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .marquee { overflow: hidden; position: relative; }
+  .marquee-track {
+    display: inline-flex; white-space: nowrap;
+    will-change: transform;
+    animation: marquee var(--marquee-duration, 40s) linear infinite;
+  }
+  .marquee-paused:hover .marquee-track { animation-play-state: paused; }
+
+  /* Shapes for type distinctions */
+  .hexagon {
+    clip-path: polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%);
+  }
+  .diamond {
+    transform: rotate(45deg);
+  }
+
+  /* Animated dashed roadmap path */
+  @keyframes dash {
+    to { stroke-dashoffset: -1000; }
+  }
+  .path-anim {
+    stroke-dasharray: 8 8;
+    animation: dash 18s linear infinite;
+  }
+
+  /* Liquid card aesthetics */
+  @keyframes liquid-rotate {
+    from { --angle: 0deg; }
+    to { --angle: 360deg; }
+  }
+  @keyframes liquid-float {
+    0% { --bx: 20%; --by: 70%; --bx2: 80%; --by2: 30%; }
+    50% { --bx: 35%; --by: 65%; --bx2: 65%; --by2: 35%; }
+    100% { --bx: 25%; --by: 75%; --bx2: 75%; --by2: 25%; }
+  }
+  .liquid-card {
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.06);
+    background: radial-gradient(120px 120px at var(--mx,50%) var(--my,50%), rgba(255,255,255,0.06), transparent 60%),
+                conic-gradient(from var(--angle,0deg) at 50% 50%, rgba(168,85,247,0.10), rgba(59,130,246,0.10), rgba(168,85,247,0.10));
+    animation: liquid-rotate 14s linear infinite;
+  }
+  .liquid-card::after { display: none; }
+}
+
