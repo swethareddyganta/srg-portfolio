@@ -3,7 +3,17 @@
 import Link from "next/link"
 import { useState } from "react"
 
-export default function EducationCard({ institution, degree, specialization, period, location, image, link }) {
+type EducationCardProps = {
+  institution: string
+  degree: string
+  specialization: string
+  period: string
+  location: string
+  image?: string
+  link: string
+}
+
+export default function EducationCard({ institution, degree, specialization, period, location, image, link }: EducationCardProps) {
   const [imgSrc, setImgSrc] = useState(image || "/placeholder.svg?height=200&width=300")
 
   const handleImageError = () => {
