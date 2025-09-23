@@ -414,7 +414,10 @@ function TimelineItem({
   )
 }
 
-function SkillCard({ category, skills }) {
+type Skill = { name: string; level: number }
+type SkillCardProps = { category: string; skills: Skill[] }
+
+function SkillCard({ category, skills }: SkillCardProps) {
   return (
     <div className="card p-6 h-full">
       <h3 className="text-xl font-medium mb-6">{category}</h3>
