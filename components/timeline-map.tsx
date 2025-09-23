@@ -73,8 +73,7 @@ export function TimelineMap({ items }: { items: TimelineItem[] }) {
     const container = containerRef.current
     if (!canvas || !container) return
 
-    const ctx = canvas.getContext("2d")
-    if (!ctx) return
+    const ctx = canvas.getContext("2d") as CanvasRenderingContext2D
 
     // Locally narrowed, non-null references for nested callbacks
     const canvasEl = canvas as HTMLCanvasElement
