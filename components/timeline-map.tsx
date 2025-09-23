@@ -76,15 +76,17 @@ export function TimelineMap({ items }: { items: TimelineItem[] }) {
     const ctx = canvas.getContext("2d")
     if (!ctx) return
 
+    // Locally narrowed, non-null references for nested callbacks
+    const canvasEl = canvas as HTMLCanvasElement
+    const containerEl = container as HTMLDivElement
+
     function resize() {
       const dpr = Math.min(2, window.devicePixelRatio || 1)
-      const el = containerRef.current
-      if (!el) return
-      const { clientWidth, clientHeight } = el
-      canvas.width = Math.floor(clientWidth * dpr)
-      canvas.height = Math.floor(clientHeight * dpr)
-      canvas.style.width = clientWidth + "px"
-      canvas.style.height = clientHeight + "px"
+      const { clientWidth, clientHeight } = containerEl
+      canvasEl.width = Math.floor(clientWidth * dpr)
+      canvasEl.height = Math.floor(clientHeight * dpr)
+      canvasEl.style.width = clientWidth + "px"
+      canvasEl.style.height = clientHeight + "px"
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
       // minimap
       if (miniRef.current) {
@@ -110,8 +112,8 @@ export function TimelineMap({ items }: { items: TimelineItem[] }) {
     }
 
     function drawGrid() {
-      const { width, height } = canvas
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      const { width, height } = canvasEl
+      ctx.clearRect(0, 0, canvasEl.width, canvasEl.height)
       ctx.save()
       ctx.fillStyle = "#000"
       ctx.fillRect(0, 0, width, height)
@@ -264,7 +266,7 @@ export function TimelineMap({ items }: { items: TimelineItem[] }) {
         ctx.font = `12px ui-sans-serif, system-ui, -apple-system`
         const w = Math.min(280, Math.max(80, ctx.measureText(text).width + pad * 2))
         const h = 28
-        const x = Math.max(8, Math.min(canvas.width / (window.devicePixelRatio||1) - w - 8, screen.x + 12))
+        const x = Math.max(8, Math.min(canvasEl.width / (window.devicePixelRatio||1) - w - 8, screen.x + 12))
         const y = Math.max(8, screen.y - h - 12)
         // background
         ctx.fillStyle = "rgba(0,0,0,0.7)"
@@ -318,7 +320,7 @@ export function TimelineMap({ items }: { items: TimelineItem[] }) {
       const invS = 1 / scaleRef.current
       const t = translateRef.current
       const topLeft = screenToWorld({ x: 0, y: 0 })
-      const bottomRight = screenToWorld({ x: canvas.width / (window.devicePixelRatio||1), y: canvas.height / (window.devicePixelRatio||1) })
+      const bottomRight = screenToWorld({ x: canvasEl.width / (window.devicePixelRatio||1), y: canvasEl.height / (window.devicePixelRatio||1) })
       const rx = topLeft.x * s + ox
       const ry = topLeft.y * s + oy
       const rw = (bottomRight.x - topLeft.x) * s
@@ -330,11 +332,11 @@ export function TimelineMap({ items }: { items: TimelineItem[] }) {
 
     resize()
     const ro = new ResizeObserver(resize)
-    ro.observe(container)
+    ro.observe(containerEl)
 
     const onWheel = (e: WheelEvent) => {
       e.preventDefault()
-      const rect = canvas.getBoundingClientRect()
+      const rect = canvasEl.getBoundingClientRect()
       const mouse: Vec2 = { x: e.clientX - rect.left, y: e.clientY - rect.top }
       const worldBefore = screenToWorld(mouse)
       const delta = -Math.sign(e.deltaY) * 0.1
@@ -361,7 +363,7 @@ export function TimelineMap({ items }: { items: TimelineItem[] }) {
         pinchStartDistRef.current = Math.hypot(dx, dy)
         pinchStartScaleRef.current = scaleRef.current
         const centerScreen = { x: (pts[0].x + pts[1].x) / 2, y: (pts[0].y + pts[1].y) / 2 }
-        pinchAnchorWorldRef.current = screenToWorld({ x: centerScreen.x - (canvas.getBoundingClientRect().left), y: centerScreen.y - (canvas.getBoundingClientRect().top) })
+        pinchAnchorWorldRef.current = screenToWorld({ x: centerScreen.x - (canvasEl.getBoundingClientRect().left), y: centerScreen.y - (canvasEl.getBoundingClientRect().top) })
         // during pinch, disable panning
         isPanningRef.current = false
       }
@@ -379,7 +381,7 @@ export function TimelineMap({ items }: { items: TimelineItem[] }) {
         const dist = Math.hypot(dx, dy)
         const factor = Math.max(0.5, Math.min(2.0, dist / pinchStartDistRef.current))
         const newScale = Math.max(0.4, Math.min(2.5, pinchStartScaleRef.current * factor))
-        const centerScreen = { x: (pts[0].x + pts[1].x) / 2 - canvas.getBoundingClientRect().left, y: (pts[0].y + pts[1].y) / 2 - canvas.getBoundingClientRect().top }
+        const centerScreen = { x: (pts[0].x + pts[1].x) / 2 - canvasEl.getBoundingClientRect().left, y: (pts[0].y + pts[1].y) / 2 - canvasEl.getBoundingClientRect().top }
         // keep anchor under centerScreen
         scaleRef.current = newScale
         const ws = worldToScreen(pinchAnchorWorldRef.current)
@@ -403,7 +405,7 @@ export function TimelineMap({ items }: { items: TimelineItem[] }) {
         lastMoveRef.current = { t: now, x: e.clientX, y: e.clientY }
       } else {
         // hover
-        const rect = canvas.getBoundingClientRect()
+        const rect = canvasEl.getBoundingClientRect()
         const mouse: Vec2 = { x: e.clientX - rect.left, y: e.clientY - rect.top }
         const w = screenToWorld(mouse)
         let closest: number | null = null
@@ -560,20 +562,20 @@ export function TimelineMap({ items }: { items: TimelineItem[] }) {
       }, 250)
     }
 
-    canvas.addEventListener("wheel", onWheelDebounced as any, { passive: false })
-    canvas.addEventListener("pointerdown", onPointerDown)
-    canvas.addEventListener("pointermove", onPointerMove)
-    canvas.addEventListener("pointerup", onPointerUp)
-    canvas.addEventListener("click", onClick)
+    canvasEl.addEventListener("wheel", onWheelDebounced as any, { passive: false })
+    canvasEl.addEventListener("pointerdown", onPointerDown)
+    canvasEl.addEventListener("pointermove", onPointerMove)
+    canvasEl.addEventListener("pointerup", onPointerUp)
+    canvasEl.addEventListener("click", onClick)
 
     return () => {
       ro.disconnect()
       if (zoomTimer) window.clearTimeout(zoomTimer)
-      canvas.removeEventListener("wheel", onWheelDebounced as any)
-      canvas.removeEventListener("pointerdown", onPointerDown)
-      canvas.removeEventListener("pointermove", onPointerMove)
-      canvas.removeEventListener("pointerup", onPointerUp)
-      canvas.removeEventListener("click", onClick)
+      canvasEl.removeEventListener("wheel", onWheelDebounced as any)
+      canvasEl.removeEventListener("pointerdown", onPointerDown)
+      canvasEl.removeEventListener("pointermove", onPointerMove)
+      canvasEl.removeEventListener("pointerup", onPointerUp)
+      canvasEl.removeEventListener("click", onClick)
     }
   }, [nodes, hoverIdx, selectedIdx])
 
