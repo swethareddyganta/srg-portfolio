@@ -78,7 +78,9 @@ export function TimelineMap({ items }: { items: TimelineItem[] }) {
 
     function resize() {
       const dpr = Math.min(2, window.devicePixelRatio || 1)
-      const { clientWidth, clientHeight } = container
+      const el = containerRef.current
+      if (!el) return
+      const { clientWidth, clientHeight } = el
       canvas.width = Math.floor(clientWidth * dpr)
       canvas.height = Math.floor(clientHeight * dpr)
       canvas.style.width = clientWidth + "px"
@@ -471,7 +473,9 @@ export function TimelineMap({ items }: { items: TimelineItem[] }) {
         })
         if (best) {
           // zoom in towards clicked cluster center
-          const { clientWidth, clientHeight } = container
+          const el = containerRef.current
+          if (!el) return
+          const { clientWidth, clientHeight } = el
           targetScaleRef.current = Math.max(0.9, scaleRef.current * 1.4)
           targetTranslateRef.current = { x: clientWidth / 2 - w.x * (targetScaleRef.current || scaleRef.current), y: clientHeight / 2 - w.y * (targetScaleRef.current || scaleRef.current) }
           animateCamera()
@@ -493,7 +497,9 @@ export function TimelineMap({ items }: { items: TimelineItem[] }) {
 
     function centerOn(idx: number) {
       const node = filteredNodes[idx]
-      const { clientWidth, clientHeight } = container
+      const el = containerRef.current
+      if (!el) return
+      const { clientWidth, clientHeight } = el
       const desiredScale = Math.min(1.4, Math.max(0.8, scaleRef.current))
       targetScaleRef.current = desiredScale
       const cx = clientWidth / 2
@@ -541,7 +547,9 @@ export function TimelineMap({ items }: { items: TimelineItem[] }) {
       if (zoomTimer) window.clearTimeout(zoomTimer)
       zoomTimer = window.setTimeout(() => {
         // snap to nearest node to center
-        const center = screenToWorld({ x: (container.clientWidth)/2, y: (container.clientHeight)/2 })
+        const el = containerRef.current
+        if (!el) return
+        const center = screenToWorld({ x: (el.clientWidth)/2, y: (el.clientHeight)/2 })
         let bestIdx = 0
         let bestD = Infinity
         filteredNodes.forEach((n, i) => {
