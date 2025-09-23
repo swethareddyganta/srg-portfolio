@@ -441,7 +441,19 @@ function SkillCard({ category, skills }: SkillCardProps) {
   )
 }
 
-function EducationCard({ institution, degree, specialization, period, location, description, courses, image, link }) {
+type EducationCardProps = {
+  institution: string
+  degree: string
+  specialization: string
+  period: string
+  location: string
+  description: string
+  courses: string[]
+  image: string
+  link: string
+}
+
+function EducationCard({ institution, degree, specialization, period, location, description, courses, image, link }: EducationCardProps) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
       <div className="lg:col-span-1">
@@ -485,7 +497,16 @@ function EducationCard({ institution, degree, specialization, period, location, 
   )
 }
 
-function CertificationCard({ title, issuer, date, description, skills, link }) {
+type CertificationCardProps = {
+  title: string
+  issuer: string
+  date: string
+  description: string
+  skills: string[]
+  link: string
+}
+
+function CertificationCard({ title, issuer, date, description, skills, link }: CertificationCardProps) {
   return (
     <div className="card p-6 h-full flex flex-col">
       <div className="mb-auto">
