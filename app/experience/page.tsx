@@ -307,6 +307,22 @@ export default function Experience() {
   )
 }
 
+type TimelineItemProps = {
+  position: string
+  title: string
+  project?: string
+  company: string
+  companyLink: string
+  location: string
+  period: string
+  description: string
+  achievements: string[]
+  skills: string[]
+  image: string
+  paperLink?: string
+  projectLinks?: { label: string; href: string }[]
+}
+
 function TimelineItem({
   position,
   title,
@@ -321,7 +337,7 @@ function TimelineItem({
   image,
   paperLink,
   projectLinks,
-}) {
+}: TimelineItemProps) {
   return (
     <div className={`relative flex items-start ${position === "right" ? "md:flex-row" : "md:flex-row-reverse"}`}>
       {/* Timeline dot */}
