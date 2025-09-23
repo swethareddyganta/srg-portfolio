@@ -264,7 +264,6 @@ function CreativePathTimeline({
           <g transform={`translate(${handleX + dragX}, ${handleY})`}>
             <circle r={14} fill="#0b0f19" stroke="#4c1d95" strokeWidth="1.5" />
             <circle r={6} fill="#a855f7" />
-            <cursor />
             <rect
               x={-16}
               y={-16}
