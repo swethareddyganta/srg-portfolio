@@ -39,6 +39,11 @@ const typeStyles: Record<TimelineType, { dot: string; icon: string; accent: stri
   },
 }
 
+function extractYear(date: string): string {
+  const match = date.match(/\b(?:19|20)\d{2}\b/g)
+  return match ? match[0] : ""
+}
+
 export function RoadmapTimeline({ items }: { items: TimelineItem[] }) {
   const [activeType, setActiveType] = React.useState<TimelineType | "all">("all")
   const [activeIndex, setActiveIndex] = React.useState(0)
