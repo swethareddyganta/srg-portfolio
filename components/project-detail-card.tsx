@@ -4,7 +4,18 @@ import Link from "next/link"
 import { Github, ExternalLink } from "lucide-react"
 import { useState } from "react"
 
-export default function ProjectDetailCard({ title, subtitle, description, image, tags, year, githubLink, paperLink }) {
+type ProjectDetailCardProps = {
+  title: string
+  subtitle: string
+  description: string
+  image?: string
+  tags: string[]
+  year: string | number
+  githubLink?: string
+  paperLink?: string
+}
+
+export default function ProjectDetailCard({ title, subtitle, description, image, tags, year, githubLink, paperLink }: ProjectDetailCardProps) {
   const [imgSrc, setImgSrc] = useState(image || "/placeholder.svg?height=200&width=300")
 
   const handleImageError = () => {
