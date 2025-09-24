@@ -70,7 +70,7 @@ export default function Experience() {
                 ]}
                 image="/images/experience-1.jpeg"
                 projectLinks={[
-                  { label: "Virtual Clean Rooms", href: "https://clean-room-9rctsh0w1-swethareddygantas-projects.vercel.app/" },
+                  { label: "Virtual Clean Rooms", href: "https://clean-room-ten.vercel.app/" },
                   { label: "LifeConnect", href: "https://lifeconnect-74hf.vercel.app/" },
                 ]}
               />
@@ -236,6 +236,14 @@ export default function Experience() {
               skills={["Generative AI", "Prompt Engineering", "Evaluation", "LLMs"]}
               link="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/SKZxezskWgmFjRvj9/gabev3vXhuACr48eb_SKZxezskWgmFjRvj9_crtzjBY4Pjs2TsLMm_1751672999802_completion_certificate.pdf"
             />
+            <CertificationCard
+              title="Oracle Cloud Certification"
+              issuer="Oracle"
+              date="2025"
+              description="Validated proficiency with Oracle technologies and cloud fundamentals."
+              skills={["Oracle Cloud", "OCI", "Cloud Fundamentals"]}
+              link="https://drive.google.com/file/d/1nc8DIxDm_REAkJoaE8-HL73fL0NRv9ss/view"
+            />
           </div>
         </div>
       </section>
@@ -274,7 +282,7 @@ export default function Experience() {
               <Link href="/experience" className="text-sm text-gray-400 hover:text-white transition-colors">
                 Experience
               </Link>
-              <Link href="https://drive.google.com/file/d/1L2SDUCpDUFm6nXWXdorR5-Xq1GFMoaaV/view?usp=sharing" className="text-sm text-gray-400 hover:text-white transition-colors" target="_blank">
+              <Link href="https://drive.google.com/file/d/1qZ_U4K6AH6iNzQaJJyUxeqkA3mZ9mPOR/view?usp=drive_link" className="text-sm text-gray-400 hover:text-white transition-colors" target="_blank">
                 Resume
               </Link>
             </div>

@@ -174,7 +174,7 @@ export default function Projects() {
               <Link href="/experience" className="text-sm text-gray-400 hover:text-white transition-colors">
                 Experience
               </Link>
-              <Link href="https://drive.google.com/file/d/1L2SDUCpDUFm6nXWXdorR5-Xq1GFMoaaV/view?usp=sharing" className="text-sm text-gray-400 hover:text-white transition-colors" target="_blank">
+              <Link href="https://drive.google.com/file/d/1qZ_U4K6AH6iNzQaJJyUxeqkA3mZ9mPOR/view?usp=drive_link" className="text-sm text-gray-400 hover:text-white transition-colors" target="_blank">
                 Resume
               </Link>
             </div>

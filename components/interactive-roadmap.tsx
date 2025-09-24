@@ -172,6 +172,7 @@ export default function InteractiveRoadmap({ items }: { items: RoadmapItem[] }) 
                 )
               })}
             </div>
+          {/* Removed custom row connector as requested */}
             
             {/* Second Row - Last 3 items */}
             <div className="flex items-center justify-center">

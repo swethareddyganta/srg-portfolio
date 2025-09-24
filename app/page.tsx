@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, Github, Linkedin, Mail, FileText, GraduationCap } from "lucide-react"
+import { ArrowRight, Github, Linkedin, Mail, FileText, GraduationCap, Cloud } from "lucide-react"
 import ProjectCard from "@/components/project-card"
 import type { TimelineItem } from "@/components/roadmap-timeline"
 import InteractiveRoadmap from "@/components/interactive-roadmap"
@@ -56,7 +56,7 @@ function SocialOrb({ href, label, icon, angleDeg, baseRadiusRem = 12 }: SocialOr
         <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-purple-500/40 to-blue-500/40 shadow-[0_0_20px_rgba(147,51,234,0.35)] border border-white/20">
           {icon}
         </span>
-        <span className="w-0 overflow-hidden whitespace-nowrap text-sm font-medium transition-all duration-300 ease-out group-hover:w-24">
+        <span className="w-0 overflow-hidden whitespace-nowrap text-sm font-medium transition-all duration-300 ease-out group-hover:w-40">
           {label}
         </span>
       </span>
@@ -219,32 +219,38 @@ export default function Home() {
                     href="https://www.linkedin.com/in/swetha-reddy-ganta"
                     label="LinkedIn"
                     icon={<Linkedin className="h-5 w-5" />}
-                    angleDeg={45}
+                    angleDeg={0}
                   />
                   <SocialOrb
                     href="mailto:swethaganta0408@gmail.com"
                     label="Email"
                     icon={<Mail className="h-5 w-5" />}
-                    angleDeg={135}
+                    angleDeg={72}
                   />
                   <SocialOrb
                     href="https://github.com/swethareddyganta"
                     label="GitHub"
                     icon={<Github className="h-5 w-5" />}
-                    angleDeg={225}
+                    angleDeg={144}
                   />
                   <SocialOrb
                     href="https://scholar.google.com/citations?user=46_UcSkAAAAJ&hl=en"
                     label="Scholar"
                     icon={<GraduationCap className="h-5 w-5" />}
-                    angleDeg={315}
+                    angleDeg={216}
+                  />
+                  <SocialOrb
+                    href="https://drive.google.com/file/d/1usKL1UNjLUiF6dXcIzX85PNdew-swsUN/view?usp=sharing"
+                    label="Cloud Certifications"
+                    icon={<Cloud className="h-5 w-5" />}
+                    angleDeg={288}
                   />
                 </div>
               </div>
               {/* Resume capsule */}
               <div className="mt-8 flex justify-center z-10 relative">
                 <Link
-                  href="https://drive.google.com/file/d/1L2SDUCpDUFm6nXWXdorR5-Xq1GFMoaaV/view?usp=sharing"
+                  href="https://drive.google.com/file/d/1qZ_U4K6AH6iNzQaJJyUxeqkA3mZ9mPOR/view?usp=drive_link"
                   target="_blank"
                   className="inline-flex items-center gap-2 h-11 px-6 rounded-full bg-white/10 hover:bg-white/20 border border-gray-800 text-white/90 hover:text-white transition-colors shadow-sm"
                 >
@@ -349,9 +355,7 @@ export default function Home() {
           type: "experience",
           description: "Volunteer contributor developing and refining AI prompts for ML-driven simulations, improving model reliability by 30%.",
           location: "Remote",
-          links: [
-            { label: "Foundation", href: "#", external: false, type: "github" },
-          ],
+          links: [],
           tags: ["Prompt Engineering", "NLP"],
         },
         {
@@ -360,12 +364,11 @@ export default function Home() {
           title: "Software Engineer I",
           subtitle: "Arrant Tech",
           type: "experience",
-          description: "• Built cleanroom HVAC platform using Next.js & TypeScript with automated EUGMP/WHO/TGA compliance calculations to reduce manual engineering work by 30%.• Built an AI agent app in Python using NLP and ML with microservices to parse user prompts and search 10K+ socialprofiles, boosting identity match accuracy by 65% across LinkedIn, GitHub, Instagram, and more.• Architected AI solutions integrating Workday Extend with RAG pipelines retrieving candidate history and job fit data to reduce campaign latency by 40% • Implemented JWT/OAuth 2.0 authentication systems with rate limiting to reduce SQL injection and XSS vulnerabilities by 30%d AI Application Developer for LifeConnectApp; building autonomous agent systems, Workday Extend integrations, and secure auth.",
+          description: "I build AI agents, wire up Workday integrations, and craft cleanroom software at Arrant Tech.",
           location: "Coppell, TX",
           isCurrent: true,
           links: [
-            { label: "Virtual Clean Rooms", href: "https://clean-room-9rctsh0w1-swethareddygantas-projects.vercel.app/", external: true, type: "github" },
-            { label: "LifeConnect", href: "https://lifeconnect-74hf.vercel.app/", external: true, type: "github" },
+            { label: "LifeConnect", href: "https://lifeconnect-74hf.vercel.app/", external: true, type: "github" }
           ],
           tags: ["Agents", "Workday", "OAuth"],
         },
@@ -401,7 +404,7 @@ export default function Home() {
               image="/images/experience-1.jpeg"
               achievements={[]}
               projectLinks={[
-                { label: "Virtual Clean Rooms", href: "https://clean-room-9rctsh0w1-swethareddygantas-projects.vercel.app/" },
+                { label: "Virtual Clean Rooms", href: "https://clean-room-ten.vercel.app/" },
                 { label: "LifeConnect", href: "https://lifeconnect-74hf.vercel.app/" },
               ]}
             />
@@ -613,7 +616,7 @@ export default function Home() {
               <Link href="/experience" className="text-sm text-gray-400 hover:text-white transition-colors">
                 Experience
               </Link>
-              <Link href="https://drive.google.com/file/d/1L2SDUCpDUFm6nXWXdorR5-Xq1GFMoaaV/view?usp=sharing" className="text-sm text-gray-400 hover:text-white transition-colors" target="_blank">
+              <Link href="https://drive.google.com/file/d/1qZ_U4K6AH6iNzQaJJyUxeqkA3mZ9mPOR/view?usp=drive_link" className="text-sm text-gray-400 hover:text-white transition-colors" target="_blank">
                 Resume
               </Link>
             </div>
