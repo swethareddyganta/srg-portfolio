@@ -244,6 +244,14 @@ export default function Experience() {
               skills={["Oracle Cloud", "OCI", "Cloud Fundamentals"]}
               link="https://drive.google.com/file/d/1nc8DIxDm_REAkJoaE8-HL73fL0NRv9ss/view"
             />
+            <CertificationCard
+              title="Oracle AI Vector Search Certified Professional"
+              issuer="Oracle"
+              date="2025"
+              description="Validated expertise in Oracle AI Vector Search, vector indexing, similarity search, and RAG integration."
+              skills={["Oracle", "AI Vector Search", "RAG", "Similarity Search", "Vector Indexing"]}
+              link="https://drive.google.com/file/d/1ZbOOrtqWwsVvsaKAkpTO0HioFzeqySNa/view?usp=sharing"
+            />
           </div>
         </div>
       </section>
@@ -282,7 +290,7 @@ export default function Experience() {
               <Link href="/experience" className="text-sm text-gray-400 hover:text-white transition-colors">
                 Experience
               </Link>
-              <Link href="https://drive.google.com/file/d/1qZ_U4K6AH6iNzQaJJyUxeqkA3mZ9mPOR/view?usp=drive_link" className="text-sm text-gray-400 hover:text-white transition-colors" target="_blank">
+              <Link href="https://drive.google.com/file/d/1e6jwrgjs8mS2IM7oOzTv1r1YK72uuPpr/view?usp=sharing" className="text-sm text-gray-400 hover:text-white transition-colors" target="_blank">
                 Resume
               </Link>
             </div>

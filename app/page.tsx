@@ -240,7 +240,7 @@ export default function Home() {
                     angleDeg={216}
                   />
                   <SocialOrb
-                    href="https://drive.google.com/file/d/1usKL1UNjLUiF6dXcIzX85PNdew-swsUN/view?usp=sharing"
+                    href="https://drive.google.com/file/d/1dLnp62n5CxCiODr-ROa9OLU4Au-RIb4-/view?usp=sharing"
                     label="Cloud Certifications"
                     icon={<Cloud className="h-5 w-5" />}
                     angleDeg={288}
@@ -250,7 +250,7 @@ export default function Home() {
               {/* Resume capsule */}
               <div className="mt-8 flex justify-center z-10 relative">
                 <Link
-                  href="https://drive.google.com/file/d/1qZ_U4K6AH6iNzQaJJyUxeqkA3mZ9mPOR/view?usp=drive_link"
+                  href="https://drive.google.com/file/d/1e6jwrgjs8mS2IM7oOzTv1r1YK72uuPpr/view?usp=sharing"
                   target="_blank"
                   className="inline-flex items-center gap-2 h-11 px-6 rounded-full bg-white/10 hover:bg-white/20 border border-gray-800 text-white/90 hover:text-white transition-colors shadow-sm"
                 >
@@ -616,7 +616,7 @@ export default function Home() {
               <Link href="/experience" className="text-sm text-gray-400 hover:text-white transition-colors">
                 Experience
               </Link>
-              <Link href="https://drive.google.com/file/d/1qZ_U4K6AH6iNzQaJJyUxeqkA3mZ9mPOR/view?usp=drive_link" className="text-sm text-gray-400 hover:text-white transition-colors" target="_blank">
+              <Link href="https://drive.google.com/file/d/1e6jwrgjs8mS2IM7oOzTv1r1YK72uuPpr/view?usp=sharing" className="text-sm text-gray-400 hover:text-white transition-colors" target="_blank">
                 Resume
               </Link>
             </div>

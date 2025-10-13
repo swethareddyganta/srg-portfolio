@@ -51,7 +51,7 @@ export default function Navbar() {
             <NavLink href="/projects" label="Projects" pathname={pathname} onClick={closeMenu} />
             <NavLink href="/experience" label="Experience" pathname={pathname} onClick={closeMenu} />
             <Link
-              href="https://drive.google.com/file/d/1qZ_U4K6AH6iNzQaJJyUxeqkA3mZ9mPOR/view?usp=drive_link"
+              href="https://drive.google.com/file/d/1e6jwrgjs8mS2IM7oOzTv1r1YK72uuPpr/view?usp=sharing"
               className="button-primary"
               target="_blank"
             >
@@ -82,7 +82,7 @@ export default function Navbar() {
           <NavLink href="/projects" label="Projects" pathname={pathname} onClick={closeMenu} mobile />
           <NavLink href="/experience" label="Experience" pathname={pathname} onClick={closeMenu} mobile />
           <Link
-            href="https://drive.google.com/file/d/1qZ_U4K6AH6iNzQaJJyUxeqkA3mZ9mPOR/view?usp=drive_link"
+            href="https://drive.google.com/file/d/1e6jwrgjs8mS2IM7oOzTv1r1YK72uuPpr/view?usp=sharing"
             className="button-primary px-8 py-3 text-base"
             target="_blank"
             onClick={closeMenu}
