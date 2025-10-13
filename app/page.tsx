@@ -368,7 +368,8 @@ export default function Home() {
           location: "Coppell, TX",
           isCurrent: true,
           links: [
-            { label: "LifeConnect", href: "https://lifeconnect-74hf.vercel.app/", external: true, type: "github" }
+            { label: "LifeConnect", href: "https://lifeconnect-74hf.vercel.app/", external: true, type: "github" },
+            { label: "Cloud Certifications", href: "https://drive.google.com/file/d/1dLnp62n5CxCiODr-ROa9OLU4Au-RIb4-/view?usp=sharing", external: true, type: "certificate" }
           ],
           tags: ["Agents", "Workday", "OAuth"],
         },
